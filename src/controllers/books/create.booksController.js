@@ -1,4 +1,5 @@
-const {Books} = require("../../models");
+const {Books, typeBooks} = require("../../models");
+const {body} = require("express-validator")
 
 const service = async function(req, res, next) {
     try {
@@ -10,4 +11,15 @@ const service = async function(req, res, next) {
     }
 };
 
-module.exports = {service};
+const validation = [
+    body("typeBooksId").notEmpty().withMessage("tipe buku tidak boleh kosong").custom(async (value) => {
+        const requestDB = await typeBooks.findOne({where:{id:value}});
+        if (!requestDB) {
+            return Promise.reject("Tipe Buku Tidak Dapat Ditemukan");
+        } else {
+            return true;
+        }
+    })
+]
+
+module.exports = {service, validation};
