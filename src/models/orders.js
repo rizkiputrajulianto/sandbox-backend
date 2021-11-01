@@ -19,7 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     usersId: DataTypes.INTEGER,
     booksId: DataTypes.INTEGER,
     qty: DataTypes.INTEGER,
-    orderAt: DataTypes.DATE
+    orderAt: {type:DataTypes.DATE,
+    allowNull: false
+  }
   }, {
     sequelize,
     modelName: 'Orders',

@@ -2,7 +2,7 @@ const {Users} = require("../../models");
 
 const service = async function(req, res, next){
     try{
-        const where = {id:req.params.id}
+        const where = {id:req.body.id}
         const requestDB = await Users.destroy({where});
         if(requestDB){
             return res.json({msg: "data berhasil dihapus", data:requestDB})

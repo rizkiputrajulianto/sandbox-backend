@@ -1,10 +1,10 @@
 const {Users} = require("../../models");
 
 const service = async function(req, res, next) {
-    const payload = req.body;
     try {
+        const payload = req.body;
         const requestDB = await Users.create(payload);
-        return res.json({msg:"Data Berhasil Disimpan", data:requestDB});
+        return res.json({msg:"data berhasil ditambahkan", data:requestDB});
     } catch (error) {
         return res.status(500).json({msg:error.toString()});
     }
